@@ -1,0 +1,6 @@
+<%= render 'articles/show_temp' %>
+
+<%= form_for @comment, :url=>{ :action=>:update } do |f| %>
+  <%= f.text_field :message %>
+  <%= f.submit %>
+<% end %>

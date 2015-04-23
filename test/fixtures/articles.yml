@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shinchoku: MyString
+  kansou: MyText
+  manabi: MyText
+  next: 2015-04-10
+  next_date: 2015-04-10
+  memo: MyText
+  user_id: 
+
+two:
+  shinchoku: MyString
+  kansou: MyText
+  manabi: MyText
+  next: 2015-04-10
+  next_date: 2015-04-10
+  memo: MyText
+  user_id: 

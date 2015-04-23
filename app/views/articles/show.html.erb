@@ -1,0 +1,17 @@
+<%= render 'show_temp' %>
+<ol>
+  ⭐︎コメント
+  <% @article.comments.each do |comment| %>
+    <li><%= comment.message %>
+    <% if comment.user_id == current_user.id %>
+      <%= link_to '編集', edit_article_comment_path(comment.article_id, comment.id) %>
+      <%= link_to '削除', article_comment_path(comment.article_id, comment.id), method: :delete, data: { confirm: "本当に削除してよろしいですか？" } %>
+    <% end %>
+    </li>
+  <% end %>
+
+  <%= form_for [@article, @article.comments.build] do |f| %>
+    <li><%= f.text_field :message %></li>
+    <%= f.submit %>
+  <% end %>
+</ol>

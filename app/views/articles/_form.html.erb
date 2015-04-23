@@ -1,0 +1,10 @@
+<%= form_for @article do |f| %>
+  作成日時： <p><%= f.date_field :date %></p>
+  今日やったこと:  <p>  <%= f.text_area :shinchoku %></p>
+  課題・感想  <p>  <%= f.text_area :kansou %></p>
+  学び・気づき  <p>  <%= f.text_area :manabi %></p>
+  次やること  <p>  <%= f.text_area :next_do %></p>
+  次来る日  <p>  <%= f.date_field :next_date %></p>
+  備考  <p>  <%= f.text_area :memo %></p>
+  <p>  <%= f.submit %></p>
+<% end %>
