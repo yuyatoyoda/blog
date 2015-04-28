@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   resources :articles do
+#    member post :favorite
     resources :comments, only: [:create, :edit, :update, :destroy]
   end
 
