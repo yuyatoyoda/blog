@@ -1,5 +1,5 @@
 <h1><%= @article.date %></h1>
-
+<p>作成者：<%= @article.user_id %></p>
 <p>◯今日やったこと</p>
 <%= @article.shinchoku %>
 <br>
@@ -17,3 +17,9 @@
 <p>◯備考</p>
 <%= @article.memo %>
 <br>
+<% if @article.favorited_by? current_user %>
+  <%= link_to "いいね！を取り消す", favorite_delete_article_path(@article.id), method: :delete %>
+<% else %>
+  <%= link_to "いいね！", favorite_article_path(@article.id), method: :post %>
+<% end %>
+<p>いいね！：<p>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150428132738) do
+ActiveRecord::Schema.define(version: 20150429093358) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "email",               limit: 255, default: "", null: false
@@ -54,15 +54,15 @@ ActiveRecord::Schema.define(version: 20150428132738) do
   add_index "comments", ["article_id"], name: "index_comments_on_article_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
-  create_table "favorie_articles", force: :cascade do |t|
+  create_table "favorite_articles", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
     t.integer  "article_id", limit: 4
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
 
-  add_index "favorie_articles", ["article_id"], name: "index_favorie_articles_on_article_id", using: :btree
-  add_index "favorie_articles", ["user_id"], name: "index_favorie_articles_on_user_id", using: :btree
+  add_index "favorite_articles", ["article_id"], name: "index_favorite_articles_on_article_id", using: :btree
+  add_index "favorite_articles", ["user_id"], name: "index_favorite_articles_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -86,6 +86,6 @@ ActiveRecord::Schema.define(version: 20150428132738) do
   add_foreign_key "articles", "users"
   add_foreign_key "comments", "articles"
   add_foreign_key "comments", "users"
-  add_foreign_key "favorie_articles", "articles"
-  add_foreign_key "favorie_articles", "users"
+  add_foreign_key "favorite_articles", "articles"
+  add_foreign_key "favorite_articles", "users"
 end
