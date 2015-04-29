@@ -1,8 +1,8 @@
 <%= render 'show_temp' %>
 <ol>
-  ⭐︎コメント
+  <h3>⭐︎コメント</h3>
   <% @article.comments.each do |comment| %>
-    <li><%= comment.message %>
+    <li><%= comment.message %> by <%= comment.user_id %>
     <% if comment.user_id == current_user.id %>
       <%= link_to '編集', edit_article_comment_path(comment.article_id, comment.id) %>
       <%= link_to '削除', article_comment_path(comment.article_id, comment.id), method: :delete, data: { confirm: "本当に削除してよろしいですか？" } %>
