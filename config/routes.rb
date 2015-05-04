@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :articles do
     member do
       post :favorite
-      delete :favorite_delete
+      delete :favorite
     end
     resources :comments, only: [:create, :edit, :update, :destroy]
   end

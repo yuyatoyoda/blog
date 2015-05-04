@@ -1,25 +1,25 @@
-<h2><%= @article.date %></h2>
-<h3>作成者：<%= @article.user_id %></h3>
+<h2><%= article.date %></h2>
+<h3>作成者：<%= article.user.name %></h3>
 <p>◯今日やったこと</p>
-<%= @article.shinchoku %>
+<%= article.shinchoku %>
 <br>
 <p>◯課題・感想</p>
-<%= @article.kansou %>
+<%= article.kansou %>
 <p>◯学び・気づき</p>
-<%= @article.manabi %>
+<%= article.manabi %>
 <br>
 <p>◯次やること</p>
-<%= @article.next_do %>
+<%= article.next_do %>
 <br>
 <p>◯次来る日</p>
-<%= @article.next_date %>
+<%= article.next_date %>
 <br>
 <p>◯備考</p>
-<%= @article.memo %>
+<%= article.memo %>
 <br>
-<% if @article.favorited_by? current_user %>
-  <%= link_to "いいね！を取り消す", favorite_delete_article_path(@article.id), method: :delete %>
+<% if article.favorited_by?(current_user) %>
+  <%= link_to "いいね！を取り消す", favorite_article_path(article.id), method: :delete %>
 <% else %>
-  <%= link_to "いいね！", favorite_article_path(@article.id), method: :post %>
+  <%= link_to "いいね！", favorite_article_path(article.id), method: :post %>
 <% end %>
 <p>いいね！：<p>

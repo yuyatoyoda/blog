@@ -1,6 +1,9 @@
 class ArticlesController < ApplicationController
+  before_action :set_article, only: [:show, :edit, :update, :destroy, :favorite, :favorite_delete]
+
   def index
     @articles = Article.all
+    @user = current_user
   end
 
   def new
@@ -16,15 +19,13 @@ class ArticlesController < ApplicationController
  end
 
  def show
-   @article = Article.find(params[:id])
+   @user = current_user
  end
 
  def edit
-   @article = Article.find(params[:id])
  end
 
  def update
-   @article = Article.find(params[:id])
    if @article.update(article_params)
      redirect_to articles_path
    else
@@ -33,13 +34,11 @@ class ArticlesController < ApplicationController
  end
 
  def destroy
-   @article = Article.find(params[:id])
    @article.destroy
    redirect_to articles_path
  end
 
  def favorite
-   @article = Article.find(params[:id])
    @favorite = current_user.favorite_articles.build(article: @article)
    if @favorite.save
      redirect_to article_path(@article.id)
@@ -47,10 +46,10 @@ class ArticlesController < ApplicationController
  end
 
  def favorite_delete
-   @article = Article.find(params[:id])
-   @favorite = current_user.favorite_articles.find_by!(article: @article)
-   @favorite.destroy
-   redirect_to article_path(@article.id)
+   @favorite = current_user.favorite_articles.find_by(article: @article)
+   if @favorite.destroy
+     redirect_to article_path(@article.id)
+   end
  end
 
  private
@@ -59,4 +58,7 @@ class ArticlesController < ApplicationController
    params[:article].permit(:date, :shinchoku, :kansou, :manabi, :next_do, :next_date, :memo)
  end
 
+ def set_article
+   @article = Article.find(params[:id])
+ end
 end
