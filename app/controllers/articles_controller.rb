@@ -4,7 +4,6 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.all
-    @user = current_user
   end
 
   def new
@@ -20,7 +19,6 @@ class ArticlesController < ApplicationController
  end
 
  def show
-   @user = current_user
  end
 
  def edit

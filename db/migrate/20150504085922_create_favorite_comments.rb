@@ -5,6 +5,10 @@ class CreateFavoriteComments < ActiveRecord::Migration
       t.references :comment, index: true, foreign_key: true
 
       t.timestamps null: false
+
+      t.index :user_id
+      t.index :article_id
+      t.index :created_at
     end
   end
 end

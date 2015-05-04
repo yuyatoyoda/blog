@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
 before_action :set_article
-before_action :set_comment, only: [:edit, :updpate, :destroy]
+before_action :set_comment, only: [:edit, :updpate, :destroy, :comment_favorite, :comment_favorite_delete]
 
   def create
     @comment = @article.comments.new(comment_params)
@@ -21,6 +21,22 @@ before_action :set_comment, only: [:edit, :updpate, :destroy]
   def destroy
     @comment.destroy
     redirect_to article_path(@article.id)
+  end
+
+  def favorite
+    @favorite = current_user.favorite_comments.build(comment: @comment)
+    if @favorite.save
+      redirect_to article_path(@article.id)
+    else
+      p 'hello'
+    end
+  end
+
+  def favorite_delete
+    @favorite = current_user.favorite_comments.find_by(comment: @comment)
+    if @favorite.destroy
+      redirect_to article_path(@article.id)
+    end
   end
 
   private
