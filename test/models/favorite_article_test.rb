@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class FavorieArticleTest < ActiveSupport::TestCase
+class FavoriteArticleTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
