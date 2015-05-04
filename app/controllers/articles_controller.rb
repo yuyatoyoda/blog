@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy, :favorite, :favorite_delete]
+  before_action :set_current_user, only: [:index, :show]
 
   def index
     @articles = Article.all
@@ -53,7 +54,6 @@ class ArticlesController < ApplicationController
  end
 
  private
-
  def article_params
    params[:article].permit(:date, :shinchoku, :kansou, :manabi, :next_do, :next_date, :memo)
  end
@@ -61,4 +61,9 @@ class ArticlesController < ApplicationController
  def set_article
    @article = Article.find(params[:id])
  end
+
+ def set_current_user
+   @user = current_user
+ end
+
 end

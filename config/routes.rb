@@ -14,7 +14,12 @@ Rails.application.routes.draw do
       post :favorite
       delete :favorite
     end
-    resources :comments, only: [:create, :edit, :update, :destroy]
+    resources :comments, only: [:create, :edit, :update, :destroy] do
+      member do
+        post :favorite
+        delete :favorite
+      end
+    end
   end
 
   root 'articles#index'
