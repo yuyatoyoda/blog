@@ -3,7 +3,7 @@
 <ul>
 <% @articles.each do |article| %>
   <li>
-  <%= link_to article.shinchoku, article_path(article.id) %> by <%= article.user.name %>
+  <%= link_to article.shinchoku, article_path(article.id) %> by <%= link_to article.user.name, user_path(article.user_id) %>
   <% if article.user_id == @user.id %>
     <%= link_to "編集", edit_article_path(article.id) %>
     <%= link_to "削除", article_path(article.id), method: :delete, data: { confirm: "本当に削除してよろしいですか？" } %>

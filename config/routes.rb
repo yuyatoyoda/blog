@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
+  get 'users/index'
+
+  get 'users/show'
+
   devise_for :admin_users
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
+  resources :users, only: [:index, :show]
   resources :articles do
     member do
       post :favorite

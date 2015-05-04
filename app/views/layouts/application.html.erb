@@ -18,8 +18,9 @@
   <p class="navbar-text pull-right">
   <% if user_signed_in? %>
     <h1><%= link_to 'FiNC日報', articles_path %></h1>
-    <strong><%= @user.name %>(<%= @user.id %>)</strong>さん
+    <strong><%= link_to @user.name, user_path(@user.id) %></strong>さん
     <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+    <%= link_to 'ユーザー一覧', users_path, :class => 'navbar-link' %> | 
     <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
   <% else %>
     <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |

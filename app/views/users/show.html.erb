@@ -1,0 +1,7 @@
+<h1><%= @show_user.name %></h1>
+<h2>「いいね！」一覧</h2>
+<ul>
+<% @favorites.each do |favorite| %>
+  <li><%= link_to favorite.article.shinchoku, article_path(favorite.article.id) %> by <%= link_to favorite.article.user.name, user_path(favorite.article.user_id) %></li>
+<% end %>
+</ul>
