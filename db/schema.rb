@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150504085922) do
+ActiveRecord::Schema.define(version: 20150506043152) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "email",               limit: 255, default: "", null: false
@@ -73,6 +73,16 @@ ActiveRecord::Schema.define(version: 20150504085922) do
 
   add_index "favorite_comments", ["comment_id"], name: "index_favorite_comments_on_comment_id", using: :btree
   add_index "favorite_comments", ["user_id"], name: "index_favorite_comments_on_user_id", using: :btree
+
+  create_table "follows", force: :cascade do |t|
+    t.integer  "follower_id", limit: 4
+    t.integer  "followee_id", limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "follows", ["followee_id"], name: "index_follows_on_followee_id", using: :btree
+  add_index "follows", ["follower_id"], name: "index_follows_on_follower_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
