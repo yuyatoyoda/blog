@@ -7,4 +7,5 @@ class User < ActiveRecord::Base
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorite_articles, dependent: :destroy
+  has_many :favorite_comments, dependent: :destroy
 end
