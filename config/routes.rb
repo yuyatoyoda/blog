@@ -12,12 +12,12 @@ Rails.application.routes.draw do
   resources :articles do
     member do
       post :favorite
-      delete :favorite
+      delete :favorite_delete
     end
     resources :comments, only: [:create, :edit, :update, :destroy] do
       member do
         post :favorite
-        delete :favorite
+        delete :favorite_delete
       end
     end
   end
