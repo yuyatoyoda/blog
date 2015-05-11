@@ -5,7 +5,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 def create
   @user = User.new(user_params)
   if @user.save
-    RegistrationMailer.registration_email(@user).deliver
+    RegistrationMailer.registration_email(@user).deliver_now
     sign_in(@user)
     redirect_to articles_path
   else
@@ -28,9 +28,6 @@ def user_params
   params.require(:user).permit(:name, :email, :password, :password_confirmation, :remember_me)
 end
 
-def user_params2
-  params.require(:user).permit(:id, :name, :email, :password, :password_confirmation, :remember_me)
-end
   # GET /resource/sign_up
   # def new
   #   super
