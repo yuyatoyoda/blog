@@ -51,7 +51,7 @@ class ArticlesController < ApplicationController
  private
 
  def article_params
-   params[:article].permit(:date, :shinchoku, :kansou, :manabi, :next_do, :next_date, :memo)
+   params[:article].permit(:date, :shinchoku, :kansou, :manabi, :next_do, :next_date, :memo, :article_image, :article_image_cache, :remove_article_image)
  end
 
  def set_article

@@ -3,9 +3,7 @@ Rails.application.routes.draw do
 
   get 'users/show'
 
-  devise_for :admin_users#, :controllers => {
-#    sessions: 'admin_users/sessions'
- # }
+  devise_for :admin_users
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: {
     registrations: 'users/registrations'

@@ -1,10 +1,19 @@
-<h1><%= @show_user.name %></h1>
-<% if @show_user.id != @current_user.id %>
-<% if @show_user.followed_by?(@current_user) %>
-  <%= link_to 'フォロー解除', user_follow_path(@show_user.id, @follow.id), method: :delete %>
-<% else %>
-  <%= link_to 'フォロー', user_follows_path(@show_user.id), method: :post %>
-<% end %>
+  <h1><%= @show_user.name %></h1>
+
+  <p>
+  <% if @show_user.image? %>
+    <div class="thumbnail">
+      <%= image_tag @show_user.image.url %>
+    </div>
+  <% end %>
+  </p>
+
+  <% if @show_user.id != @current_user.id %>
+  <% if @show_user.followed_by?(@current_user) %>
+    <%= link_to 'フォロー解除', user_follow_path(@show_user.id, @follow.id), method: :delete %>
+  <% else %>
+    <%= link_to 'フォロー', user_follows_path(@show_user.id), method: :post %>
+  <% end %>
 <% end %>
 <h2>「いいね！」一覧</h2>
 <ul>

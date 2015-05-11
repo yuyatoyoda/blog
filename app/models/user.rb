@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   has_many :follows, foreign_key: :followee_id, class_name: Follow
   has_many :followers, through: :follows
 
+  mount_uploader :image, ImageUploader
+
   def followed_by?(user)
     follows.where(follower_id: user.id).exists?
   end
