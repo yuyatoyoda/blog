@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
   before_action :set_show_user, only: [:followings, :followers]
   before_action :set_follows, only: [:followings, :followers]
+<<<<<<< HEAD
 
+=======
+  before_action :set_follow, only: [:index, :followings, :followers]
+>>>>>>> フォローボタン追加
   def index
     @users = User.all
   end
@@ -11,7 +15,6 @@ class UsersController < ApplicationController
     @favorites = FavoriteArticle.where(user_id: @show_user.id)
     @follow = Follow.find_by(follower_id: @current_user.id, followee_id: @show_user.id)
   end
-
   def followings
   end
 
@@ -25,5 +28,9 @@ class UsersController < ApplicationController
 
   def set_follows
     @follows = Follow.all
+  end
+
+  def set_follow
+    @follow = Follow.find_by(follower_id: @current_user.id)
   end
 end
