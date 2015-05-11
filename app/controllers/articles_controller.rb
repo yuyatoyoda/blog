@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :set_current_user, only: [:index]
+  before_action :set_article, only: [:show, :edit, :update, :destroy, :favorite, :favorite_delete]
 
   def index
     @articles = Article.all
@@ -41,16 +41,13 @@ class ArticlesController < ApplicationController
  end
 
  def favorite
-   @article = Article.find(params[:id])
-   @favorite = current_user.favorite_articles.build(article: @article)
-   if @favorite.save
-     redirect_to article_path(@article.id)
-   end
+   @favorite = current_user.favorite_articles.build(article_id: @article.id)
+   @favorite.save
+   redirect_to article_path(@article.id)
  end
 
  def favorite_delete
-   @article = Article.find(params[:id])
-   @favorite = current_user.favorite_articles.find_by!(article: @article)
+   @favorite = FavoriteArticle.find_by(user_id: current_user.id, article_id: @article.id)
    @favorite.destroy
    redirect_to article_path(@article.id)
  end
@@ -61,8 +58,8 @@ class ArticlesController < ApplicationController
    params[:article].permit(:date, :shinchoku, :kansou, :manabi, :next_do, :next_date, :memo)
  end
 
- def set_current_user
-   @user = current_user
+ def set_article
+   @article = Article.find(params[:id])
  end
 
 end

@@ -10,16 +10,22 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show] do
+    resources :follows, only: [:create, :destroy]
+    member do
+      get :followings
+      get :followers
+    end
+  end
   resources :articles do
     member do
       post :favorite
-      delete :favorite
+      delete :favorite_delete
     end
     resources :comments, only: [:create, :edit, :update, :destroy] do
       member do
         post :favorite
-        delete :favorite
+        delete :favorite_delete
       end
     end
   end

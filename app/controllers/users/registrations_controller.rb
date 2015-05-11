@@ -13,8 +13,23 @@ def create
   end
 end
 
+def update
+  @user = User.find(current_user.id)
+  if @user.update(user_params)
+    sign_in(@user)
+    redirect_to user_path(@user.id)
+  else
+    render 'edit'
+  end
+end
+
+private
 def user_params
   params.require(:user).permit(:name, :email, :password, :password_confirmation, :remember_me)
+end
+
+def user_params2
+  params.require(:user).permit(:id, :name, :email, :password, :password_confirmation, :remember_me)
 end
   # GET /resource/sign_up
   # def new

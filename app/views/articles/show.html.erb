@@ -4,7 +4,7 @@
   <% @article.comments.each do |comment| %>
     <li><%= comment.message %> by <%= link_to comment.user.name, user_path(comment.user.id) %>
     <% if comment.comment_favorited_by?(@user) %>
-      <%= link_to 'いいね！を取り消す', favorite_article_comment_path(comment.article_id, comment.id), method: :delete %>
+      <%= link_to 'いいね！を取り消す', favorite_delete_article_comment_path(comment.article_id, comment.id), method: :delete %>
     <% else %>
       <%= link_to 'いいね！', favorite_article_comment_path(comment.article_id, comment.id), method: :post %>
     <% end %>

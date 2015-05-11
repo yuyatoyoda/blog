@@ -1,0 +1,12 @@
+<h2><%= link_to @show_user.name, user_path(@show_user.id) %>さんがフォローしているユーザー一覧</h2>
+<ul>
+<% @follows.where(follower_id: @show_user.id).each do |follow| %>
+  <li><%= link_to follow.followee.name, user_path(follow.followee_id) %> 
+  <% if follow.followee.followed_by?(@current_user) %>
+    <%= link_to 'フォロー解除', user_follow_path(follow.followee_id, @follow.id), method: :delete %>
+  <% else %>
+    <%= link_to 'フォロー', user_follows_path(follow.followee_id), method: :post %>
+  <% end %>
+  </li>
+<% end %>
+</ul>
