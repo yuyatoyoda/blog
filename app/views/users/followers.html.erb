@@ -1,0 +1,6 @@
+<h2><%= link_to @show_user.name, user_path(@show_user.id) %>さんをフォローしているユーザー一覧</h2>
+<ul>
+<% @follows.where(followee_id: @show_user.id).each do |follow| %>
+  <li><%= link_to follow.follower.name, user_path(follow.follower_id) %></li>
+<% end %>
+</ul>
