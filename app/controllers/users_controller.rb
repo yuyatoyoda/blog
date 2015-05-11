@@ -1,11 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_show_user, only: [:followings, :followers]
   before_action :set_follows, only: [:followings, :followers]
-<<<<<<< HEAD
-
-=======
   before_action :set_follow, only: [:index, :followings, :followers]
->>>>>>> フォローボタン追加
+
   def index
     @users = User.all
   end
