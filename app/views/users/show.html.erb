@@ -15,6 +15,12 @@
     <%= link_to 'フォロー', user_follows_path(@show_user.id), method: :post %>
   <% end %>
 <% end %>
+<h2>日報一覧</h2>
+<ul>
+<% @articles.each do |article| %>
+  <li><%= article.shinchoku %></li>
+<% end %>
+</ul>
 <h2>「いいね！」一覧</h2>
 <ul>
 <% @favorites.each do |favorite| %>
