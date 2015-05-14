@@ -4,7 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
 def create
   @user = User.new(user_params)
-  if @user.save
+  if @user.save(:validate => false)
     RegistrationMailer.registration_email(@user).deliver_now
     sign_in(@user)
     redirect_to articles_path
