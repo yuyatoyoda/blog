@@ -3,6 +3,8 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.all
+    @q = Article.search(params[:q])
+    @articles = @q.result(distinct: true)
   end
 
   def new
