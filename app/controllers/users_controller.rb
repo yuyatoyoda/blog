@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def show
     @show_user = User.find(params[:id])
+    @articles = Article.where(user_id: @show_user.id)
     @favorites = FavoriteArticle.where(user_id: @show_user.id)
     @follow = Follow.find_by(follower_id: @current_user.id, followee_id: @show_user.id)
   end
