@@ -25,7 +25,7 @@ end
 
 private
 def user_params
-  params.require(:user).permit(:name, :email, :password, :password_confirmation, :remember_me)
+  params.require(:user).permit(:name, :email, :password, :password_confirmation, :remember_me, :image, :image_cache, :remove_image)
 end
 
   # GET /resource/sign_up

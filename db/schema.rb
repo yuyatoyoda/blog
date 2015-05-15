@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150506043152) do
+ActiveRecord::Schema.define(version: 20150511120936) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "email",               limit: 255, default: "", null: false
@@ -29,16 +29,17 @@ ActiveRecord::Schema.define(version: 20150506043152) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
 
   create_table "articles", force: :cascade do |t|
-    t.string   "shinchoku",  limit: 255
-    t.text     "kansou",     limit: 65535
-    t.text     "manabi",     limit: 65535
-    t.string   "next_do",    limit: 255
+    t.string   "shinchoku",     limit: 255
+    t.text     "kansou",        limit: 65535
+    t.text     "manabi",        limit: 65535
+    t.string   "next_do",       limit: 255
     t.date     "next_date"
-    t.text     "memo",       limit: 65535
-    t.integer  "user_id",    limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.text     "memo",          limit: 65535
+    t.integer  "user_id",       limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.date     "date"
+    t.string   "article_image", limit: 255
   end
 
   add_index "articles", ["user_id"], name: "index_articles_on_user_id", using: :btree
@@ -98,6 +99,7 @@ ActiveRecord::Schema.define(version: 20150506043152) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name",                   limit: 255
+    t.string   "image",                  limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
