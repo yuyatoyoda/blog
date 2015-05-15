@@ -1,7 +1,5 @@
 class RegistrationMailer < ApplicationMailer
 
-  default from: "yuya.toyoda@gmail.com"
-
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
