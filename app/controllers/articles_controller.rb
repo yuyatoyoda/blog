@@ -49,6 +49,7 @@ class ArticlesController < ApplicationController
  end
 
  private
+
  def article_params
    params[:article].permit(:date, :shinchoku, :kansou, :manabi, :next_do, :next_date, :memo)
  end

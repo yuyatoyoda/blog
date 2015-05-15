@@ -1,12 +1,12 @@
 class Users::SessionsController < Devise::SessionsController
 # before_filter :configure_sign_in_params, only: [:create]
-
+before_action :set_current_user
   # GET /resource/sign_in
   # def new
   #   super
   # end
 
-  # POST /resource/sign_in
+  #POST /resource/sign_in
   # def create
   #   super
   # end
@@ -22,4 +22,8 @@ class Users::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.for(:sign_in) << :attribute
   # end
+  private
+  def set_current_user
+    @user = current_user
+  end
 end
