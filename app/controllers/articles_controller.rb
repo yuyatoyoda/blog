@@ -3,6 +3,9 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.all
+    #require 'Gemfile/koala'
+    #@facebook = Koala::Facebook::API.new(CAACEdEose0cBAHr69sT4rb3FWLrRhjoUnBYFRX7yQuRXbdxClX8uZBCH5WZBIzp8pK5XFreeZBSwcJhragGrEQDur9jgamSsApLqKBECz7QdKSNxDGYJ0dak9moAI5vRHzsGBfxqkrDy5uVeWVY4jnft6x335kZC6g35dBGr5vRTHClE76E0KZATM0koYXv5jn5efVV2EsuXplTZCtHazG)
+    #@me = @facebook.get_object('me')
     @q = Article.search(params[:q])
     @articles = @q.result(distinct: true)
   end

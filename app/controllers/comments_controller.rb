@@ -1,7 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_article
   before_action :set_comment, only: [:edit, :updpate, :destroy, :favorite, :favorite_delete]
-  before_action :set_current_user, only: [:favorite]
 
   def create
     @comment = @article.comments.new(comment_params)
