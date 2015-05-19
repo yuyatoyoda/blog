@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :followers, through: :follows
 
   mount_uploader :image, ImageUploader
+  mount_uploader :fb_image, FbImageUploader
 
   def followed_by?(user)
     follows.where(follower_id: user.id).exists?
@@ -24,12 +25,18 @@ class User < ActiveRecord::Base
     user = User.where(uid: auth.uid, provider: auth.provider).first
 
     unless user
-      user = User.create(
+      user = User.new(
         uid: auth.uid,
         provider: auth.provider,
         email: User.dummy_email(auth),
-        password: Devise.friendly_token[0, 20]
+        password: Devise.friendly_token[0, 20],
+        name: auth.extra.raw_info.name,
+        fb_image: auth.info.image
       )
+      user.save(:validation => false)
+      p auth.info.image
+      #user.remote_image_url = auth.info.image
+      #user.save
     end
 
     user
@@ -39,4 +46,5 @@ class User < ActiveRecord::Base
   def self.dummy_email(auth)
     "#{auth.uid}-#{auth.provider}@example.com"
   end
+
 end
