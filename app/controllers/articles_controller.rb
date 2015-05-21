@@ -3,7 +3,8 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.all
-    #@graph = Koala::Facebook::API.new("CAACEdEose0cBAKhWTUigDDPkfHAfTLXAHZAE9OEhh56AKNturo82UCqS7ic3S4eYk7ulQj8WOu8sX2UCiFGmWjZCK1izC8dDN5uxxdWPpZCL7x8NhmHrZA4qrGLlkaD8GuZCT5mpKGNcQZCZBb8hmB8oTnTKLuLRXkf3B8wOy9OOU1WvJiZAB3Nimi2ZB28H1sjdxL41g2BRbUupIrkKDNXBv")
+    #@token = @user.token
+    #@graph = Koala::Facebook::API.new(@token)
     #@me = @graph.get_object('me')
     #@me2 = @graph.get_picture('me')
     #@user.update(name: @me['name'])

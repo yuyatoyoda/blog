@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-#  attr_accessible :name,:email, :password, :password_confirmation, :remember_me
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
   has_many :articles, dependent: :destroy
@@ -31,13 +30,11 @@ class User < ActiveRecord::Base
         email: User.dummy_email(auth),
         password: Devise.friendly_token[0, 20],
         name: auth.extra.raw_info.name,
-        fb_image: auth.info.image
+        fb_image: auth.info.image,
+        #token: auth.credentials.token
       )
       user.save(:validation => false)
-      p auth.info.image
-      p user.fb_image
-      #user.remote_image_url = auth.info.image
-      #user.save
+      p token
     end
 
     user
