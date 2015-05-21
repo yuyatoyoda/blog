@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_many :followers, through: :follows
 
   mount_uploader :image, ImageUploader
-  mount_uploader :fb_image, FbImageUploader
+  #mount_uploader :fb_image, FbImageUploader
 
   def followed_by?(user)
     follows.where(follower_id: user.id).exists?
@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
       )
       user.save(:validation => false)
       p auth.info.image
+      p user.fb_image
       #user.remote_image_url = auth.info.image
       #user.save
     end

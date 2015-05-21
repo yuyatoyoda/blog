@@ -1,11 +1,13 @@
   <h1><%= @show_user.name %></h1>
 
   <p>
-  <% if @show_user.image? %>
-    <div class="thumbnail">
+  <div class="thumbnail">
+    <% if @show_user.image? %>
       <%= image_tag(@show_user.image.url) %>
-    </div>
-  <% end %>
+    <% elsif @show_user.fb_image?  %>
+      <%= image_tag(@show_user.fb_image) %>
+    <% end %>
+  </div>
   </p>
 
   <% if @show_user.id != @current_user.id %>
