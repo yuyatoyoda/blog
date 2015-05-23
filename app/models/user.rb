@@ -8,9 +8,11 @@ class User < ActiveRecord::Base
   has_many :favorite_articles, dependent: :destroy
   has_many :favorite_comments, dependent: :destroy
 
-  has_many :followings, foreign_key: :follower_id
+  #自分がフォロー
+  has_many :followings, foreign_key: :follower_id, class_name: Follow, dependent: :destroy
   has_many :followees, through: :followings
-  has_many :follows, foreign_key: :followee_id, class_name: Follow
+  #自分をフォロー
+  has_many :follows, foreign_key: :followee_id, class_name: Follow, dependent: :destroy
   has_many :followers, through: :follows
 
   mount_uploader :image, ImageUploader

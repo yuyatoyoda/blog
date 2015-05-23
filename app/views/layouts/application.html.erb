@@ -24,10 +24,10 @@
     }
     -->
   </style>
+  <%= image_tag "blog_logo.png", :size => '45x60' %>
+  <h1><%= link_to 'FiNC日報', articles_path %></h1>
+  <br>
   <% if user_signed_in? %>
-    <%= image_tag "blog_logo.png", :size => '45x60' %>
-    <h1><%= link_to 'FiNC日報', articles_path %></h1>
-    <br>
     <strong><%= link_to @current_user.name, user_path(@current_user.id) %></strong>さん
     <div class="nav navbar-nav navbar-right">
       <%= link_to 'プロフィール編集', edit_user_registration_path, :class => 'navbar-link' %> |
