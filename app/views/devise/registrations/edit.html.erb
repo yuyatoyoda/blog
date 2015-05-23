@@ -18,7 +18,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br /><!実際には入力しないとはねられる>
+    <%= f.label :password %> <i><!(leave blank if you don't want to change it)></i><br /><!実際には入力しないとはねられる>
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
 
@@ -47,11 +47,14 @@
     <% end %>
   </div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
+  <% if false %>
+    <div class="field">
+      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+      <%= f.password_field :current_password, autocomplete: "off" %>
+    </div>
+  <% end %>
 
+  <br>
   <div class="actions">
     <%= f.submit "Update" %>
   </div>
