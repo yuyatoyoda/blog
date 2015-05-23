@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
         #token: auth.credentials.token
       )
       user.save(:validation => false)
-      p token
+      #p token
     end
 
     user

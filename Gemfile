@@ -35,6 +35,7 @@ gem 'rmagick'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'ransack'
+gem 'rails-i18n'
 
 gem 'omniauth'
 gem 'omniauth-facebook'

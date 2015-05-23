@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Blog</title>
+  <title>FiNC日報</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
 
@@ -15,20 +16,33 @@
     <p class = "alert alert-danger"><%= alert %></p>
   <% end %>
 
-  <p class="navbar-text pull-right">
+  <nav class="navbar-default navbar-fixed-top">
+  <style type="text/css">
+    <!--
+    h1{
+      display: inline;
+    }
+    -->
+  </style>
   <% if user_signed_in? %>
+    <%= image_tag "blog_logo.png", :size => '45x60' %>
     <h1><%= link_to 'FiNC日報', articles_path %></h1>
+    <br>
     <strong><%= link_to @current_user.name, user_path(@current_user.id) %></strong>さん
-    <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-    <%= link_to 'ユーザー一覧', users_path, :class => 'navbar-link' %> | 
-    <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+    <div class="nav navbar-nav navbar-right">
+      <%= link_to 'プロフィール編集', edit_user_registration_path, :class => 'navbar-link' %> |
+      <%= link_to 'ユーザー一覧', users_path, :class => 'navbar-link' %> | 
+      <%= link_to "ログアウト", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
   <% else %>
     <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
     <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %> |
     <%= link_to "Admin Login", rails_admin_path, :class => 'navbar-link' %>
   <% end %>
+  </nav>
 
-<%= yield %>
+  <div class="container">
+    <%= yield %>
+  </div>
 
 </body>
 </html>

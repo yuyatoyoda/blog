@@ -1,9 +1,27 @@
-<h1>日報一覧</h1>
+<style type="text/css">
+  <!--
+  h2{
+    display: inline;
+  }
+  -->
+</style>
+<br>
+<h2>日報一覧         </h2>
+<%= link_to '新規作成', new_article_path %>
+<div style="float:right">
+  <%= search_form_for @q do |f| %>
+    <%= f.label :shinchoku_or_kansou_or_manabi_or_next_do_or_memo_cont, "検索" %>
+    <%= f.search_field :shinchoku_or_kansou_or_manabi_or_next_do_or_memo_cont %>
+    <%= f.submit %>
+  <% end %>
+</div>
+<br>
+<br>
 <%#= @me2 %>
 <ul>
-<% @articles.each do |article| %>
+<% @articles.order("created_at DESC").each do |article| %>
   <li>
-  <%= link_to article.shinchoku, article_path(article.id) %> by <%= link_to article.user.name, user_path(article.user_id) %>
+  <%= link_to article.shinchoku, article_path(article.id) %> by <%= link_to article.user.name, user_path(article.user_id) %> (<%= time_ago_in_words(article.created_at-9.hour) %> ago)
   <% if article.user_id == @user.id %>
     <%= link_to "編集", edit_article_path(article.id) %>
     <%= link_to "削除", article_path(article.id), method: :delete, data: { confirm: "本当に削除してよろしいですか？" } %>
@@ -11,10 +29,3 @@
   </li>
 <% end %>
 </ul>
-<%= link_to '新規作成', new_article_path %>
-
-<%= search_form_for @q do |f| %>
-  <%= f.label :shinchoku_or_kansou_or_manabi_or_next_do_or_memo_cont, "検索" %>
-  <%= f.search_field :shinchoku_or_kansou_or_manabi_or_next_do_or_memo_cont %>
-  <%= f.submit %>
-<% end %>
