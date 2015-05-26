@@ -1,6 +1,14 @@
 <%= render partial: 'articles/show_temp', locals: { article: @article } %>
 
-<%= form_for @comment, :url=>{ :action=>:update } do |f| %>
-  <%= f.text_field :message %>
+<br>
+<ol>
+  <h4>⭐︎コメント</h4>
+  <% @article.comments.each do |comment| %>
+    <li><%= comment.message %> by <%= comment.user.name %></li>
+  <% end %>
+</ol>
+
+<%= form_for @comment, :url=>{ :action => :update } do |f| %>
+  <%= f.text_area :message %>
   <%= f.submit %>
 <% end %>

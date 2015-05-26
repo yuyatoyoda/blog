@@ -29,6 +29,7 @@ class ArticlesController < ApplicationController
  end
 
  def show
+   @favorite = FavoriteArticle.where(article_id: @article.id)
  end
 
  def edit

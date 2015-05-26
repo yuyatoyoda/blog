@@ -1,6 +1,19 @@
 <%= render partial: 'show_temp', locals: { article: @article } %>
+<br>
+<% if @article.favorited_by?(@user) %>
+  <%= link_to "いいね！を取り消す", favorite_delete_article_path(@article.id), method: :delete %>
+<% else %>
+  <%= link_to "いいね！", favorite_article_path(@article.id), method: :post %>
+<% end %>
+<p>いいね！している人：
+<% @favorite.each do |favorite| %>
+  <%= favorite.user.name %>,
+<% end %>
+<p>
+
+<br>
 <ol>
-  <h3>⭐︎コメント</h3>
+  <h4>⭐︎コメント</h4>
   <% @article.comments.each do |comment| %>
     <li><%= comment.message %> by <%= link_to comment.user.name, user_path(comment.user.id) %>
     <% if comment.comment_favorited_by?(@user) %>
@@ -16,7 +29,7 @@
   <% end %>
 
   <%= form_for [@article, @article.comments.build] do |f| %>
-    <li><%= f.text_field :message %></li>
+    <li><%= f.text_area :message, placeholder: "コメント" %></li>
     <%= f.submit %>
   <% end %>
 </ol>
