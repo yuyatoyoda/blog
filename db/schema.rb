@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150521114037) do
+ActiveRecord::Schema.define(version: 20150521113730) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "email",               limit: 255, default: "", null: false
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20150521114037) do
     t.string   "shinchoku",     limit: 255
     t.text     "kansou",        limit: 65535
     t.text     "manabi",        limit: 65535
-    t.string   "next_do",       limit: 255
+    t.date     "next"
     t.date     "next_date"
     t.text     "memo",          limit: 65535
     t.integer  "user_id",       limit: 4
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20150521114037) do
   end
 
   add_index "favorite_articles", ["article_id"], name: "index_favorite_articles_on_article_id", using: :btree
+  add_index "favorite_articles", ["created_at"], name: "index_favorite_articles_on_created_at", using: :btree
   add_index "favorite_articles", ["user_id"], name: "index_favorite_articles_on_user_id", using: :btree
 
   create_table "favorite_comments", force: :cascade do |t|
@@ -73,6 +74,7 @@ ActiveRecord::Schema.define(version: 20150521114037) do
   end
 
   add_index "favorite_comments", ["comment_id"], name: "index_favorite_comments_on_comment_id", using: :btree
+  add_index "favorite_comments", ["created_at"], name: "index_favorite_comments_on_created_at", using: :btree
   add_index "favorite_comments", ["user_id"], name: "index_favorite_comments_on_user_id", using: :btree
 
   create_table "follows", force: :cascade do |t|
@@ -103,7 +105,7 @@ ActiveRecord::Schema.define(version: 20150521114037) do
     t.string   "uid",                    limit: 255
     t.string   "provider",               limit: 255
     t.string   "fb_image",               limit: 255
-    t.string   "token",                  limit: 500
+    t.string   "token",                  limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
