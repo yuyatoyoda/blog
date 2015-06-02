@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150511120936) do
+ActiveRecord::Schema.define(version: 20150602074508) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "email",               limit: 255, default: "", null: false
@@ -63,7 +63,6 @@ ActiveRecord::Schema.define(version: 20150511120936) do
   end
 
   add_index "favorite_articles", ["article_id"], name: "index_favorite_articles_on_article_id", using: :btree
-  add_index "favorite_articles", ["created_at"], name: "index_favorite_articles_on_created_at", using: :btree
   add_index "favorite_articles", ["user_id"], name: "index_favorite_articles_on_user_id", using: :btree
 
   create_table "favorite_comments", force: :cascade do |t|
