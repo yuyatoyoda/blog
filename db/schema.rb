@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20150511120936) do
     t.string   "shinchoku",     limit: 255
     t.text     "kansou",        limit: 65535
     t.text     "manabi",        limit: 65535
-    t.string   "next_do",       limit: 255
+    t.date     "next"
     t.date     "next_date"
     t.text     "memo",          limit: 65535
     t.integer  "user_id",       limit: 4
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20150511120936) do
   end
 
   add_index "favorite_articles", ["article_id"], name: "index_favorite_articles_on_article_id", using: :btree
+  add_index "favorite_articles", ["created_at"], name: "index_favorite_articles_on_created_at", using: :btree
   add_index "favorite_articles", ["user_id"], name: "index_favorite_articles_on_user_id", using: :btree
 
   create_table "favorite_comments", force: :cascade do |t|
@@ -73,6 +74,7 @@ ActiveRecord::Schema.define(version: 20150511120936) do
   end
 
   add_index "favorite_comments", ["comment_id"], name: "index_favorite_comments_on_comment_id", using: :btree
+  add_index "favorite_comments", ["created_at"], name: "index_favorite_comments_on_created_at", using: :btree
   add_index "favorite_comments", ["user_id"], name: "index_favorite_comments_on_user_id", using: :btree
 
   create_table "follows", force: :cascade do |t|
