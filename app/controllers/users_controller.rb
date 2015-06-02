@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_action :set_show_user, only: [:followings, :followers]
-  before_action :set_follows, only: [:followings, :followers]
   before_action :set_follow, only: [:index, :followings, :followers]
 
   def index
@@ -14,18 +13,16 @@ class UsersController < ApplicationController
     @follow = Follow.find_by(follower_id: @current_user.id, followee_id: @show_user.id)
   end
   def followings
+    @follows = Follow.where(follower_id: @show_user.id)
   end
 
   def followers
+    @follows = Follow.where(followee_id: @show_user.id)
   end
 
   private
   def set_show_user
     @show_user = User.find(params[:id])
-  end
-
-  def set_follows
-    @follows = Follow.all
   end
 
   def set_follow
