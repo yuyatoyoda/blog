@@ -17,9 +17,8 @@
 </div>
 <br>
 <br>
-<%#= @me2 %>
 <ul>
-<% @articles.order("created_at DESC").each do |article| %>
+<% @articles.each do |article| %>
   <li>
   <%= link_to article.shinchoku, article_path(article.id) %> by <%= link_to article.user.name, user_path(article.user_id) %> (<%= time_ago_in_words(article.created_at) %> ago)
   <% if article.user_id == @user.id %>
