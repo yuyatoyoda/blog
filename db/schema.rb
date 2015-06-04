@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150602074508) do
+ActiveRecord::Schema.define(version: 20150604070302) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "email",               limit: 255, default: "", null: false
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20150602074508) do
     t.string   "shinchoku",     limit: 255
     t.text     "kansou",        limit: 65535
     t.text     "manabi",        limit: 65535
-    t.date     "next"
+    t.text     "next",          limit: 65535
     t.date     "next_date"
     t.text     "memo",          limit: 65535
     t.integer  "user_id",       limit: 4
