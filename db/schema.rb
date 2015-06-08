@@ -63,7 +63,6 @@ ActiveRecord::Schema.define(version: 20150604070302) do
   end
 
   add_index "favorite_articles", ["article_id"], name: "index_favorite_articles_on_article_id", using: :btree
-  add_index "favorite_articles", ["created_at"], name: "index_favorite_articles_on_created_at", using: :btree
   add_index "favorite_articles", ["user_id"], name: "index_favorite_articles_on_user_id", using: :btree
 
   create_table "favorite_comments", force: :cascade do |t|

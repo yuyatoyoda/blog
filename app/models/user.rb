@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   validates :password, presence: true
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorite_articles, dependent: :destroy
@@ -20,7 +20,6 @@ class User < ActiveRecord::Base
   has_many :followers, through: :follows
 
   mount_uploader :image, ImageUploader
-  #mount_uploader :fb_image, FbImageUploader
 
   def followed_by?(user)
     follows.where(follower_id: user.id).exists?

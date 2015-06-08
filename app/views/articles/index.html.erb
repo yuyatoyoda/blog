@@ -10,8 +10,8 @@
 <%= link_to '新規作成', new_article_path %>
 <div style="float:right">
   <%= search_form_for @q do |f| %>
-    <%= f.label :shinchoku_or_kansou_or_manabi_or_next_do_or_memo_cont, "検索" %>
-    <%= f.search_field :shinchoku_or_kansou_or_manabi_or_next_do_or_memo_cont %>
+    <%= f.label :shinchoku_or_kansou_or_manabi_or_next_or_memo_cont, "検索" %>
+    <%= f.search_field :shinchoku_or_kansou_or_manabi_or_next_or_memo_cont %>
     <%= f.submit %>
   <% end %>
 </div>
@@ -29,9 +29,3 @@
 <% end %>
 </ul>
 <%= link_to '新規作成', new_article_path %>
-
-<%= search_form_for @q do |f| %>
-  <%= f.label :shinchoku_or_kansou_or_manabi_or_next_or_memo_cont, "検索" %>
-  <%= f.search_field :shinchoku_or_kansou_or_manabi_or_next_or_memo_cont %>
-  <%= f.submit %>
-<% end %>
