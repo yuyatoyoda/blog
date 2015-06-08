@@ -1,12 +1,18 @@
 <h2><%= link_to @show_user.name, user_path(@show_user.id) %>さんをフォローしているユーザー一覧</h2>
+<% if @follows.present? %>
 <ul>
-<% @follows.where(followee_id: @show_user.id).each do |follow| %>
+<% @follows.each do |follow| %>
   <li><%= link_to follow.follower.name, user_path(follow.follower_id) %> 
-  <% if follow.follower.followed_by?(@current_user) %>
-    <%= link_to 'フォロー解除', user_follow_path(follow.follower_id, @follow.id), method: :delete %>
-  <% else %>
-    <%= link_to 'フォロー', user_follows_path(follow.follower_id), method: :post %>
+  <% if follow.follower.id != @current_user.id %>
+    <% if follow.follower.followed_by?(@current_user) %>
+      <%= link_to 'フォロー解除', user_follow_path(follow.follower_id, @follow.id), method: :delete %>
+    <% else %>
+      <%= link_to 'フォロー', user_follows_path(follow.follower_id), method: :post %>
+    <% end %>
   <% end %>
   </li>
 <% end %>
 </ul>
+<% else %>
+  ユーザーがいません。
+<% end %>

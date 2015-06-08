@@ -2,7 +2,14 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy, :favorite, :favorite_delete]
 
   def index
-    @articles = Article.all
+    @articles = Article.all.order("created_at DESC")
+    #@token = @user.token
+    #@graph = Koala::Facebook::API.new(@token)
+    #@me = @graph.get_object('me')
+    #@me2 = @graph.get_picture('me')
+    #@user.update(name: @me['name'])
+    #@user.remote_image_url= @me2
+    #@user.save
     @q = Article.search(params[:q])
     @articles = @q.result(distinct: true)
   end
@@ -16,10 +23,13 @@ class ArticlesController < ApplicationController
    @article.user = current_user
    if @article.save
      redirect_to articles_path
+   else
+     render 'new'
    end
  end
 
  def show
+   @favorite = FavoriteArticle.where(article_id: @article.id)
  end
 
  def edit

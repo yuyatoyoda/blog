@@ -11,9 +11,11 @@
 /log/*
 !/log/.keep
 /tmp
-/config/database.yml
+#/config/database.yml
 /config/environments/development.rb
 
 config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
+
+*.swp

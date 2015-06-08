@@ -1,7 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_article
-  before_action :set_comment, only: [:edit, :updpate, :destroy, :favorite, :favorite_delete]
-  before_action :set_current_user, only: [:favorite]
+  before_action :set_comment, only: [:edit, :update, :destroy, :favorite, :favorite_delete]
 
   def create
     @comment = @article.comments.new(comment_params)
@@ -14,7 +13,7 @@ class CommentsController < ApplicationController
   end
 
   def update
-    @comment = @comment.update(comment_params)
+    @comment.update(comment_params)
     redirect_to article_path(@article.id)
   end
 

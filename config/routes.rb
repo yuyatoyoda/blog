@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   devise_for :admin_users
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: {
-    registrations: 'users/registrations'
+    registrations: 'users/registrations',
+    omniauth_callbacks: 'users/omniauth_callbacks'
   }
   resources :users, only: [:index, :show] do
     resources :follows, only: [:create, :destroy]
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
       get :followers
     end
   end
+
   resources :articles do
     member do
       post :favorite

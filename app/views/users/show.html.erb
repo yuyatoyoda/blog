@@ -1,32 +1,49 @@
-  <h1><%= @show_user.name %></h1>
+  <h2><%= @show_user.name %></h2>
 
   <p>
-  <% if @show_user.image? %>
-    <div class="thumbnail">
-      <%= image_tag @show_user.image.url %>
-    </div>
-  <% end %>
+  <div class="thumbnail" style="float:left">
+    <% if @show_user.image? %>
+      <%= image_tag(@show_user.image.url, :size => '90x90') %>
+    <% elsif @show_user.fb_image?  %>
+      <%= image_tag(@show_user.fb_image, :size => '90x90') %>
+    <% end %>
+  </div>
   </p>
+  <br>
+  <br>
+  <br>
+  <br>
 
   <% if @show_user.id != @current_user.id %>
-  <% if @show_user.followed_by?(@current_user) %>
-    <%= link_to 'フォロー解除', user_follow_path(@show_user.id, @follow.id), method: :delete %>
-  <% else %>
-    <%= link_to 'フォロー', user_follows_path(@show_user.id), method: :post %>
+    <% if @show_user.followed_by?(@current_user) %>
+      <%= link_to 'フォロー解除', user_follow_path(@show_user.id, @follow.id), method: :delete %>
+    <% else %>
+      <%= link_to 'フォロー', user_follows_path(@show_user.id), method: :post %>
+    <% end %>
   <% end %>
+<br>
+<br>
+<h3>書いた日報一覧</h3>
+<% if @articles.present? %>
+  <ul>
+    <% @articles.each do |article| %>
+      <li><%= link_to article.shinchoku, article_path(article.id) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  日報がありません。
 <% end %>
-<h2>日報一覧</h2>
-<ul>
-<% @articles.each do |article| %>
-  <li><%= article.shinchoku %></li>
-<% end %>
-</ul>
-<h2>「いいね！」一覧</h2>
-<ul>
-<% @favorites.each do |favorite| %>
-  <li><%= link_to favorite.article.shinchoku, article_path(favorite.article.id) %> by <%= link_to favorite.article.user.name, user_path(favorite.article.user_id) %></li>
-<% end %>
-</ul>
 
-<h2><%= link_to 'フォロー一覧', followings_user_path(@show_user.id) %></h2>
-<h2><%= link_to 'フォロワー一覧', followers_user_path(@show_user.id) %></h2>
+<h3>「いいね！」一覧</h3>
+<% if @favorites.present? %>
+  <ul>
+    <% @favorites.each do |favorite| %>
+      <li><%= link_to favorite.article.shinchoku, article_path(favorite.article.id) %> by <%= link_to favorite.article.user.name, user_path(favorite.article.user_id) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  「いいね！」している日報がありません。
+<% end %>
+
+<h3><%= link_to 'フォロー一覧', followings_user_path(@show_user.id) %></h3>
+<h3><%= link_to 'フォロワー一覧', followers_user_path(@show_user.id) %></h3>

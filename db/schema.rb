@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20150604070302) do
   end
 
   add_index "favorite_articles", ["article_id"], name: "index_favorite_articles_on_article_id", using: :btree
+  add_index "favorite_articles", ["created_at"], name: "index_favorite_articles_on_created_at", using: :btree
   add_index "favorite_articles", ["user_id"], name: "index_favorite_articles_on_user_id", using: :btree
 
   create_table "favorite_comments", force: :cascade do |t|
@@ -101,6 +102,10 @@ ActiveRecord::Schema.define(version: 20150604070302) do
     t.datetime "updated_at"
     t.string   "name",                   limit: 255
     t.string   "image",                  limit: 255
+    t.string   "uid",                    limit: 255
+    t.string   "provider",               limit: 255
+    t.string   "fb_image",               limit: 255
+    t.string   "token",                  limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

@@ -1,15 +1,15 @@
 <h2><%= article.date %></h2>
 <h3>作成者：<%= article.user.name %></h3>
 <p>◯今日やったこと</p>
-<%= article.shinchoku %>
+<%= simple_format(article.shinchoku) %>
 <br>
 <p>◯課題・感想</p>
-<%= article.kansou %>
+<%= simple_format(article.kansou) %>
 <p>◯学び・気づき</p>
-<%= article.manabi %>
+<%= simple_format(article.manabi) %>
 <br>
 <p>◯次やること</p>
-<%= article.next %>
+<%= simple_format(article.next) %>
 <br>
 <p>◯次来る日</p>
 <%= article.next_date %>
@@ -22,11 +22,4 @@
 <% end %>
 <br>
 <p>◯備考</p>
-<%= article.memo %>
-<br>
-<% if article.favorited_by?(@user) %>
-  <%= link_to "いいね！を取り消す", favorite_delete_article_path(article.id), method: :delete %>
-<% else %>
-  <%= link_to "いいね！", favorite_article_path(article.id), method: :post %>
-<% end %>
-<p>いいね！：<p>
+<%= simple_format(article.memo) %>
