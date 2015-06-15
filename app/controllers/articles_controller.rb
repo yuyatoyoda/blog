@@ -60,6 +60,9 @@ class ArticlesController < ApplicationController
    redirect_to article_path(@article.id)
  end
 
+ def privacy
+ end
+
  private
 
  def article_params

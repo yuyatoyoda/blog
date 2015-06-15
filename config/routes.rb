@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'articles/privacy'
   get 'users/index'
 
   get 'users/show'
