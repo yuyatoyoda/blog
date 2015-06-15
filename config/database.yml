@@ -54,9 +54,4 @@ test:
 #  password: <%= ENV['BLOG_DATABASE_PASSWORD'] %>
 
 production:
-    adapter: mysql2
-    encoding: utf8
-    database: heroku_bd9baa0f4800c1f
-    port: 5432
-    username: b020a00aa3242b
-    password: 0fa6c4c4
+  url: <%= ENV['DATABASE_URL'] %>
