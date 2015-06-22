@@ -7,9 +7,6 @@ class ArticlesController < ApplicationController
     #@graph = Koala::Facebook::API.new(@token)
     #@me = @graph.get_object('me')
     #@me2 = @graph.get_picture('me')
-    #@user.update(name: @me['name'])
-    #@user.remote_image_url= @me2
-    #@user.save
     @q = Article.search(params[:q])
     @articles = @q.result(distinct: true)
   end
