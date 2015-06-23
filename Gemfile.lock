@@ -66,6 +66,8 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    doorkeeper (2.2.1)
+      railties (>= 3.2)
     dotenv (2.0.1)
     dotenv-rails (2.0.1)
       dotenv (= 2.0.1)
@@ -263,6 +265,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.1.0)
   devise
+  doorkeeper
   dotenv-rails
   execjs
   jbuilder (~> 2.0)
@@ -270,6 +273,7 @@ DEPENDENCIES
   koala
   less-rails
   mysql2
+  oauth2
   omniauth
   omniauth-facebook
   puma

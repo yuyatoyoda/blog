@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  use_doorkeeper
   get 'articles/privacy'
   get 'users/index'
 

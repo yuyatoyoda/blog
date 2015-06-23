@@ -36,8 +36,18 @@ class User < ActiveRecord::Base
         password: Devise.friendly_token[0, 20],
         name: auth.extra.raw_info.name,
         fb_image: auth.info.image,
+        token: auth.credentials.token
       )
       user.save(:validation => false)
+
+      #client_id = 'c252d28820074b4c3ecc874cf07258497b948bce6fd2ec377756d18baab530a6'
+      #client_secret = '6cd1329b49d4ba4507cf28c3cdbf07985dd7c450aa7d684bc2d729ac207e2666'
+      #site = "http://localhost:3000"
+      #client = OAuth::User.new(client_id, client_secret, :site => site)
+      #token = client.password.get_token(user.email, user.password)
+      #user = User.update(
+      #  token: token
+      #)
     end
 
     user

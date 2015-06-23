@@ -11,6 +11,9 @@ class UsersController < ApplicationController
     @articles = Article.where(user_id: @show_user.id)
     @favorites = FavoriteArticle.where(user_id: @show_user.id)
     @follow = Follow.find_by(follower_id: @current_user.id, followee_id: @show_user.id)
+    @token = @show_user.token
+    @graph = Koala::Facebook::API.new(@token)
+    @me = @graph.get_object('me')
   end
   def followings
     @follows = Follow.where(follower_id: @show_user.id)
