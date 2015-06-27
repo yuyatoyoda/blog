@@ -3,10 +3,6 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.all.order("created_at DESC")
-    #@token = @user.token
-    #@graph = Koala::Facebook::API.new(@token)
-    #@me = @graph.get_object('me')
-    #@me2 = @graph.get_picture('me')
     @q = Article.search(params[:q])
     @articles = @q.result(distinct: true)
   end

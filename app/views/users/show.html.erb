@@ -23,10 +23,12 @@
   <% end %>
 <br>
 <br>
-<h3>基本情報</h3>
-名前：<%= @me["name"] %><br>
-ジェンダー：<%= @me["gender"] %><br>
-Facebook：<%= link_to @me["link"], @me["link"], :target=>["_blank"] %>
+<% if @show_user.provider? %>
+  <h3>基本情報</h3>
+  名前：<%= @me["name"] %><br>
+  ジェンダー：<%= @me["gender"] %><br>
+  Facebook：<%= link_to @me["link"], @me["link"], :target=>["_blank"] %>
+<% end %>
 <h3>書いた日報一覧</h3>
 <% if @articles.present? %>
   <ul>
