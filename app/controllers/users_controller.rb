@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_show_user
+  before_action :set_show_user, only: [:show, :followings, :followers]
   before_action :set_follow, only: [:index, :followings, :followers]
 
   def index
@@ -10,9 +10,11 @@ class UsersController < ApplicationController
     @articles = Article.where(user_id: @show_user.id)
     @favorites = FavoriteArticle.where(user_id: @show_user.id)
     @follow = Follow.find_by(follower_id: @current_user.id, followee_id: @show_user.id)
-    @token = @show_user.token
-    @graph = Koala::Facebook::API.new(@token)
-    @me = @graph.get_object('me')
+    if @show_user.provider?
+      @token = @show_user.token
+      @graph = Koala::Facebook::API.new(@token)
+      @me = @graph.get_object('me')
+    end
   end
   def followings
     @follows = Follow.where(follower_id: @show_user.id)
