@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy, :favorite, :favorite_delete]
 
   def index
-    @articles = Article.all.order("created_at DESC")
+    @articles = Article.order('created_at DESC')
     @q = Article.search(params[:q])
     @articles = @q.result(distinct: true)
   end
