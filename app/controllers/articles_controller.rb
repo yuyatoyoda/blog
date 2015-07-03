@@ -2,16 +2,8 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy, :favorite, :favorite_delete]
 
   def index
-    @articles = Article.all.order("created_at DESC")
-    #@token = @user.token
-    #@graph = Koala::Facebook::API.new(@token)
-    #@me = @graph.get_object('me')
-    #@me2 = @graph.get_picture('me')
-    #@user.update(name: @me['name'])
-    #@user.remote_image_url= @me2
-    #@user.save
     @q = Article.search(params[:q])
-    @articles = @q.result(distinct: true)
+    @articles = @q.result(distinct: true).order("created_at DESC")
   end
 
   def new
