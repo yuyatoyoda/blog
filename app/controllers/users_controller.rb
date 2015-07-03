@@ -7,7 +7,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @articles = Article.where(user_id: @show_user.id)
+    @q = Article.where(user_id: @show_user.id).search(params[:q])
+    @articles = @q.result(distinct: true).order("created_at DESC")
     @favorites = FavoriteArticle.where(user_id: @show_user.id)
     @follow = Follow.find_by(follower_id: @current_user.id, followee_id: @show_user.id)
     if @show_user.provider?
