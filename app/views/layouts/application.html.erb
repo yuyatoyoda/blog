@@ -12,20 +12,11 @@
   <meta property="og:url" content="http://localhost:3000" />
   <meta property="og:image" content="blog_logo.png"/>
   <meta property="fb:admins" content="714360085288859" />
-  <!meta property="og:description" content="サイトのdescription" />
   <meta property="fb:app_id" content="861892767230492" />
 
 </head>
 <body>
   <div id="fb-root"></div>
-  <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.3&appId=861892767230492";
-              fjs.parentNode.insertBefore(js, fjs);
-              }(document, 'script', 'facebook-jssdk'));</script>
-
   <% if notice %>
     <p class = "alert alert-success"><%= notice %></p>
   <% end %>
@@ -34,6 +25,7 @@
   <% end %>
 
   <nav class="navbar-default navbar-fixed-top">
+  <!--
   <style type="text/css">
     <!--
     h1{
@@ -41,6 +33,7 @@
     }
     -->
   </style>
+  -->
   <%= image_tag "blog_logo.png", :size => '45x60' %>
   <h1><%= link_to 'FiNC日報', articles_path %></h1>
   <br>
