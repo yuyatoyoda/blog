@@ -14,8 +14,8 @@
   <br>
   <br>
 
-  <% if @show_user.id != @current_user.id %>
-    <% if @show_user.followed_by?(@current_user) %>
+  <% if @show_user.id != @user.id %>
+    <% if @show_user.followed_by?(@user) %>
       <%= link_to 'フォロー解除', user_follow_path(@show_user.id, @follow.id), method: :delete %>
     <% else %>
       <%= link_to 'フォロー', user_follows_path(@show_user.id), method: :post %>
@@ -23,8 +23,24 @@
   <% end %>
 <br>
 <br>
+<% if @show_user.provider? %>
+  <h3>基本情報</h3>
+  名前：<%= @me["name"] %><br>
+  ジェンダー：<%= @me["gender"] %><br>
+  Facebook：<%= link_to @me["link"], @me["link"], :target=>["_blank"] %>
+<% end %>
 <h3>書いた日報一覧</h3>
 <% if @articles.present? %>
+  <div style="float:right">
+    <%= search_form_for @search do |f| %>
+      <%= f.label :shinchoku_or_kansou_or_manabi_or_next_or_memo_cont, "検索" %>
+      <%= f.search_field :shinchoku_or_kansou_or_manabi_or_next_or_memo_cont %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+  <br>
+  <br>
+  <br>
   <ul>
     <% @articles.each do |article| %>
       <li><%= link_to article.shinchoku, article_path(article.id) %></li>

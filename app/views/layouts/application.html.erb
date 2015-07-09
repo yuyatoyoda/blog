@@ -6,8 +6,24 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+  <meta property="og:site_name" content="FiNC日報" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="http://localhost:3000" />
+  <meta property="og:image" content="blog_logo.png"/>
+  <meta property="fb:admins" content="714360085288859" />
+  <meta property="fb:app_id" content="861892767230492" />
+
 </head>
 <body>
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.3&appId=861892767230492";
+              fjs.parentNode.insertBefore(js, fjs);
+              }(document, 'script', 'facebook-jssdk'));</script>
 
   <% if notice %>
     <p class = "alert alert-success"><%= notice %></p>
@@ -28,7 +44,7 @@
   <h1><%= link_to 'FiNC日報', articles_path %></h1>
   <br>
   <% if user_signed_in? %>
-    <strong><%= link_to @current_user.name, user_path(@current_user.id) %></strong>さん
+    <strong><%= link_to @user.name, user_path(@user.id) %></strong>さん
     <div class="nav navbar-nav navbar-right">
       <%= link_to 'プロフィール編集', edit_user_registration_path, :class => 'navbar-link' %> |
       <%= link_to 'ユーザー一覧', users_path, :class => 'navbar-link' %> | 
@@ -43,6 +59,10 @@
   <div class="container">
     <%= yield %>
   </div>
+
+  <nav class="navbar-default navbar-fixed-bottom">
+  <div class="fb-like" data-href="http://localhost:3000" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+  </nav>
 
 </body>
 </html>
