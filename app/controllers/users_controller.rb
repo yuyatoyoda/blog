@@ -7,9 +7,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    @articles = Article.where(user_id: @show_user.id)
+    @search = Article.where(user_id: @show_user.id).search(params[:q])
+    @articles = @search.result(distinct: true).order("created_at DESC")
     @favorites = FavoriteArticle.where(user_id: @show_user.id)
-    @follow = Follow.find_by(follower_id: @current_user.id, followee_id: @show_user.id)
+    @follow = Follow.find_by(follower_id: @user.id, followee_id: @show_user.id)
     if @show_user.provider?
       @token = @show_user.token
       @graph = Koala::Facebook::API.new(@token)
@@ -30,6 +31,6 @@ class UsersController < ApplicationController
   end
 
   def set_follow
-    @follow = Follow.find_by(follower_id: @current_user.id)
+    @follow = Follow.find_by(follower_id: @user.id)
   end
 end

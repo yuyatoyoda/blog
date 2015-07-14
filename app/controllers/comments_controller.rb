@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @article.comments.new(comment_params)
-    @comment.user = current_user
+    @comment.user = @user
     @comment.save
     redirect_to article_path(@article.id)
   end
@@ -23,13 +23,13 @@ class CommentsController < ApplicationController
   end
 
   def favorite
-    @favorite = current_user.favorite_comments.build(comment_id: @comment.id)
+    @favorite = @user.favorite_comments.build(comment_id: @comment.id)
     @favorite.save
     redirect_to article_path(@article.id)
   end
 
   def favorite_delete
-    @favorite = FavoriteComment.find_by(user_id: current_user.id, comment_id: @comment.id)
+    @favorite = FavoriteComment.find_by(user_id: @user.id, comment_id: @comment.id)
     @favorite.destroy
     redirect_to article_path(@article.id)
   end
