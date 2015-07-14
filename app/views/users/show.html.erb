@@ -31,15 +31,13 @@
 <% end %>
 <h3>書いた日報一覧</h3>
 <% if @articles.present? %>
-  <div style="float:right">
+  <div>
     <%= search_form_for @search do |f| %>
       <%= f.label :shinchoku_or_kansou_or_manabi_or_next_or_memo_cont, "検索" %>
       <%= f.search_field :shinchoku_or_kansou_or_manabi_or_next_or_memo_cont %>
       <%= f.submit %>
     <% end %>
   </div>
-  <br>
-  <br>
   <br>
   <ul>
     <% @articles.each do |article| %>
