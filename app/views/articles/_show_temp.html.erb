@@ -1,3 +1,4 @@
+<br>
 <h2><%= article.date %></h2>
 <h3>作成者：<%= article.user.name %></h3>
 <p>◯今日やったこと</p>
@@ -17,7 +18,7 @@
 <p>◯画像</p>
 <% if @article.article_image? %>
   <div class = "thumnail">
-    <%= image_tag @article.article_image.url %>
+    <%= image_tag(@article.article_image.url, :size => '90x90') %>
   </div>
 <% end %>
 <br>
