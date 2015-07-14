@@ -36,6 +36,7 @@ class User < ActiveRecord::Base
         password: Devise.friendly_token[0, 20],
         name: auth.extra.raw_info.name,
         fb_image: auth.info.image,
+        token: auth.credentials.token
       )
       user.save(:validation => false)
     end
